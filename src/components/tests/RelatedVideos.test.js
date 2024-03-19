@@ -1,14 +1,13 @@
 import { Route } from 'react-router-dom';
-
+import { withAllContexts, withRouter } from '../../tests/utils';
 import {
   screen,
   render,
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import { fakeVideos } from '../../../tests/videos';
-import { withAllContexts, withRouter } from '../../../tests/utils';
-import RelatedVideos from '../../RelatedVideos';
+import { fakeVideos } from '../../tests/videos';
+import RelatedVideos from '../RelatedVideos';
 
 describe('RelatedVideos', () => {
   const fakeYoutube = {
