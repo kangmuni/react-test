@@ -1,4 +1,7 @@
-import { render } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import { Route } from 'react-router-dom';
+import { withAllContexts, withRouter } from '../../tests/utils';
+import ChannelInfo from '../ChannelInfo';
 
 describe('ChannelInfo', () => {
   const fakeYoutube = {
@@ -9,6 +12,7 @@ describe('ChannelInfo', () => {
   afterEach(() => fakeYoutube.channelImageURL.mockReset());
 
   it('renders correctly', async () => {
+    // 호출되면 url을 리턴
     fakeYoutube.channelImageURL.mockImplementation(() => 'url');
 
     render(

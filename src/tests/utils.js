@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Routes } from 'react-router-dom';
-import { YoutubeApiProvider } from '../context/YoutubeApiContext';
+import { YoutubeApiContext } from '../context/YoutubeApiContext';
 
 export function withRouter(routes, initialEntry = '/') {
   return (
@@ -12,12 +12,12 @@ export function withRouter(routes, initialEntry = '/') {
 
 export function withAllContexts(children, youtube) {
   const testClient = createTestQueryClient();
-
   // 외부에서 가짜 mock 상태의 youtube를 전달할거임
+  // YoutubeApiContext 파일 따로 분리 해주었기 때문에 우리만의 테스트용 provider를 사용할수 있음
   return (
-    <YoutubeApiProvider value={youtube}>
+    <YoutubeApiContext.Provider value={{ youtube }}>
       <QueryClientProvider client={testClient}>{children}</QueryClientProvider>
-    </YoutubeApiProvider>
+    </YoutubeApiContext.Provider>
   );
 }
 
